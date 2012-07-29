@@ -20,4 +20,25 @@ public class IRChatListener implements Listener {
 		plugin.bot.sendMessage(plugin.getIRCChannel(), "["+player.getName()+"] "+event.getMessage());
 	}
 	
+	@EventHandler
+	public void playerJoin(PlayerJoinEvent event)
+	{
+		Player player = event.getPlayer();
+		plugin.bot.sendMessage(plugin.getIRCChannel(), "["+player.getName()+"] joined "+plugin.getServerName());
+	}
+	
+	@EventHandler
+	public void playerLeave(PlayerQuitEvent event)
+	{
+		Player player = event.getPlayer();
+		plugin.bot.sendMessage(plugin.getIRCChannel(), "["+player.getName()+"] left "+plugin.getServerName());
+	}
+	
+	@EventHandler
+	public void playerKicked(PlayerKickEvent event)
+	{
+		Player player = event.getPlayer();
+		plugin.bot.sendMessage(plugin.getIRCChannel(), "["+player.getName()+"] had been kicked off "+plugin.getServerName());
+	}
+	
 }
