@@ -14,7 +14,7 @@ public class IRChatListener implements Listener {
 	}
 	
 	@EventHandler
-	public void playerChat(PlayerChatEvent event)
+	public void playerChatEvent(PlayerChatEvent event)
 	{
 		Player player = event.getPlayer();
 		plugin.bot.sendMessage(plugin.getIRCChannel(), "["+player.getName()+"] "+event.getMessage());
