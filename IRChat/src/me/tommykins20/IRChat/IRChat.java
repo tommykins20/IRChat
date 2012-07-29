@@ -43,7 +43,7 @@ public class IRChat extends JavaPlugin {
 				reason = "the selected nickname is already in use.";
 			else
 				if(e instanceof IrcException)
-					reason = ((IrcException)e).toString();
+					reason = "you're not allowed to join this IRC server.";
 			logWarnMessage("Error when attempting to join IRC server because "+reason);
 			e.printStackTrace();
 		}
