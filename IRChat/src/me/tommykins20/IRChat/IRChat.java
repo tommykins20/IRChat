@@ -7,19 +7,18 @@ import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.jibble.pircbot.IrcException;
-import org.jibble.pircbot.NickAlreadyInUseException;
+import org.pircbotx.PircBotX;
 
 public class IRChat extends JavaPlugin {
 	
 	public IRChatListener listener;
-	public IRChatBot bot;
+	public PircBotX bot;
 	private Logger logger = Logger.getLogger("Minecraft");
 	
 	public void onEnable()
 	{
 		listener = new IRChatListener(this);
-		bot = new IRChatBot(this, getIRCUsername());
+		bot = new PircBotX();
 		getServer().getPluginManager().registerEvents(listener, this);
 		String absfile = getDataFolder().getAbsolutePath();
 		new File(absfile).mkdirs();
@@ -32,19 +31,14 @@ public class IRChat extends JavaPlugin {
 			}
 			saveDefaultConfig();
 		}
+		bot.setName(getIRCUsername());
 		bot.setVerbose(false);
 		try {
 			bot.connect(getIRCServer(), getIRCPort());
 			bot.joinChannel(getIRCChannel());
 			logMessage("Successfully joined IRC server "+getIRCServer()+":"+getIRCPort()+" on channel "+getIRCChannel()+" using nickname "+getIRCUsername());
 		} catch (Exception e) {
-			String reason = "";
-			if(e instanceof NickAlreadyInUseException)
-				reason = "the selected nickname is already in use.";
-			else
-				if(e instanceof IrcException)
-					reason = "you're not allowed to join this IRC server.";
-			logWarnMessage("Error when attempting to join IRC server because "+reason);
+			logWarnMessage("Error when attempting to join IRC server...");
 			e.printStackTrace();
 		}
 	}
