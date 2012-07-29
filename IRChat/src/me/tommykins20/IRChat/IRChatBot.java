@@ -6,10 +6,10 @@ public class IRChatBot extends PircBot {
 	
 	private IRChat plugin;
 	
-	public IRChatBot(IRChat irc, String username)
+	public IRChatBot(IRChat irchat, String username)
 	{
 		super.setName(username);
-		plugin = irc;
+		plugin = irchat;
 	}
 	
 	public void onMessage(String channel, String sender, String login, String hostname, String message)
