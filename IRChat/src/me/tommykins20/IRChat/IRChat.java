@@ -32,6 +32,7 @@ public class IRChat extends JavaPlugin {
 			}
 			saveDefaultConfig();
 		}
+		bot.setVerbose(false);
 		try {
 			bot.connect(getIRCServer(), getIRCPort());
 			bot.joinChannel(getIRCChannel());
