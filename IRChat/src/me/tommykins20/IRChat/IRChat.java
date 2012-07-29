@@ -22,7 +22,7 @@ public class IRChat extends JavaPlugin {
 		bot = new IRChatBot(this, getIRCUsername());
 		getServer().getPluginManager().registerEvents(listener, this);
 		String absfile = getDataFolder().getAbsolutePath();
-		(new File(absfile)).mkdirs();
+		new File(absfile).mkdirs();
 		if (!new File(absfile+File.separator+"config.yml").exists())
 		{
 			try {
@@ -52,6 +52,7 @@ public class IRChat extends JavaPlugin {
 	public void onDisable()
 	{
 		bot.disconnect();
+		logMessage("Disconnected from current IRC server.");
 	}
 	
 	public void logMessage(String msg)
