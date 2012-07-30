@@ -154,6 +154,19 @@ public class IRChat extends JavaPlugin {
 		logMessage("[IRC] <"+sender+"> "+message);
 	}
 	
+	/**
+	 * Broadcasts a custom formatted IRC message to server and log to console
+	 * @param message - Message to broadcast
+	 */
+	public void broadcastDifferentIRCMessage(String message)
+	{
+		for(Player online : getServer().getOnlinePlayers())
+		{
+			online.sendMessage(colorizeText(getChatFormat()));
+		}
+		logMessage("[IRC] "+message);
+	}
+	
 	public String colorizeText(String string) {
 	    string = string.replaceAll("&0", ChatColor.BLACK+"");
 	    string = string.replaceAll("&1", ChatColor.DARK_BLUE+"");
